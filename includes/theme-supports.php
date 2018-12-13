@@ -2,25 +2,30 @@
 /**
  * Setup theme support.
  *
+ * Using a hook to add theme support causes core unit tests to fail.
+ *
  * @since 1.0.0
+ * @deprecated 1.0.3
+ *
  * @return void
  */
 if ( ! function_exists( 'benenson_theme_support' ) ) {
 	function benenson_theme_support() {
-		add_theme_support( 'title-tag' );
-		add_theme_support( 'post-thumbnails' );
-		add_theme_support( 'automatic-feed-links' );
-		add_theme_support( 'editor-color-palette' );
-		add_theme_support( 'disable-custom-colors' );
-
-		remove_theme_support( 'post-formats' );
-
-		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-		$GLOBALS['content_width'] = apply_filters( 'benenson_content_width', 1200 );
+		_deprecated_function( __FUNCTION__, '1.0.3', 'add_theme_support' );
 	}
 }
 
-add_action( 'after_setup_theme', 'benenson_theme_support' );
+add_theme_support( 'title-tag' );
+add_theme_support( 'post-thumbnails' );
+add_theme_support( 'automatic-feed-links' );
+add_theme_support( 'editor-color-palette' );
+add_theme_support( 'disable-custom-colors' );
+
+remove_theme_support( 'post-formats' );
+
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+$GLOBALS['content_width'] = apply_filters( 'benenson_content_width', 1200 );
+
 
 /**
  * Add excerpt support to pages to use on the grid blocks.
